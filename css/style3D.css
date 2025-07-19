@@ -1,0 +1,266 @@
+nav {
+    position: sticky;
+    top: 0px;
+}
+
+/* styles.css */
+/* 3D Logo Animation */
+.logo-3d {
+    transition: transform 0.5s ease;
+}
+
+.logo-3d:hover {
+    transform: rotateX(15deg) rotateY(15deg);
+}
+
+/* Floating Blob Background */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.blob-1 {
+    background: rgba(99, 102, 241, 0.7);
+    /* indigo-500 */
+    width: 300px;
+    height: 300px;
+    animation: float-1 15s infinite ease-in-out;
+}
+
+.blob-2 {
+    background: rgba(236, 72, 153, 0.7);
+    /* pink-500 */
+    width: 250px;
+    height: 250px;
+    animation: float-2 18s infinite ease-in-out;
+}
+
+.blob-3 {
+    background: rgba(34, 211, 238, 0.7);
+    /* cyan-400 */
+    width: 200px;
+    height: 200px;
+    animation: float-3 12s infinite ease-in-out;
+}
+
+@keyframes float-1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(50px, 50px);
+    }
+}
+
+@keyframes float-2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-40px, -60px);
+    }
+}
+
+@keyframes float-3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(30px, -30px);
+    }
+}
+
+/* Typing Animation */
+.typing-container {
+    min-height: 2.5rem;
+}
+
+.typing-text {
+    border-right: 2px solid;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: currentColor;
+    }
+}
+
+
+/* style3D.css */
+/* Enhanced 3D and Aurora Effects */
+nav {
+    position: sticky;
+    top: 0px;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+/* 3D Logo Animation */
+.logo-3d {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.logo-3d:hover {
+    transform: rotateX(15deg) rotateY(15deg) scale(1.05);
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+}
+
+/* Celestial Floating Effects */
+@keyframes celestial-float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+/* Profile Image Glow */
+.profile-glow {
+    position: relative;
+    border: 3px solid transparent;
+    animation: border-pulse 3s infinite alternate;
+}
+
+.profile-glow::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #3b82f6, #6366f1, #ec4899);
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(10px);
+    animation: gradient-rotate 8s linear infinite;
+}
+
+@keyframes border-pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.8);
+    }
+}
+
+@keyframes gradient-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Heavenly Section Transitions */
+.section-entrance {
+    animation: celestial-fade 1.5s ease-out forwards;
+}
+
+@keyframes celestial-fade {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Typing Animation */
+.typing-container {
+    min-height: 2.5rem;
+    position: relative;
+}
+
+.typing-text {
+    position: relative;
+    display: inline-block;
+}
+
+.typing-text::after {
+    content: '|';
+    position: absolute;
+    right: -5px;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Aurora-inspired Button Effects */
+.heavenly-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.heavenly-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #3b82f6, #6366f1, #ec4899, #3b82f6);
+    background-size: 400% 400%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: gradient-shift 8s linear infinite;
+}
+
+.heavenly-btn:hover::before {
+    opacity: 1;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
