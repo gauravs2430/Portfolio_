@@ -120,7 +120,7 @@
 
         /* Hero Section Enhancements */
         #home {
-            background: linear-gradient(135deg, #111827 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
             overflow: hidden;
         }
 
@@ -132,7 +132,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle at center,
-                    rgba(59, 130, 246, 0.1) 0%,
+                    rgba(59, 130, 246, 0.15) 0%,
                     transparent 70%);
             animation: rotate-gradient 60s linear infinite;
             z-index: -1;
@@ -207,7 +207,7 @@
 
         /* Footer Enhancements */
         footer {
-            background: linear-gradient(to top, #111827, #1e3a8a);
+            background: linear-gradient(to top, #111827, #0f172a);
             position: relative;
             overflow: hidden;
         }
@@ -224,12 +224,33 @@
             background-repeat: no-repeat;
             z-index: 0;
         }
+
+        /* Navbar active states */
+        #desktop-menu a {
+            position: relative;
+        }
+
+        #desktop-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+
+        #desktop-menu a:hover::after {
+            width: 80%;
+        }
     </style>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-900 text-gray-100 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <nav class="bg-black text-white shadow-lg fixed w-full z-10">
+    <nav class="fixed w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <!-- Updated Logo with 3D hover effect -->
@@ -298,8 +319,9 @@
                         class="text-2xl md:text-3xl font-semibold mb-6 typing-container animate__animated animate__fadeIn animate__delay-1s">
                         <span class="typing-text"></span>
                     </h2>
-                    <p class="text-lg mb-8 animate__animated animate__fadeIn animate__delay-1s">I build exceptional
-                        digital experiences that are fast, accessible, and visually appealing.</p>
+                    <p class="text-lg mb-8 animate__animated animate__fadeIn animate__delay-1s text-gray-300">Senior
+                        Full-Stack Developer specializing in high-performance web applications, scalable architectures,
+                        and modern UI/UX design.</p>
                     <div class="flex justify-center space-x-4 animate__animated animate__fadeInUp animate__delay-1s">
                         <a href="#projects"
                             class="heavenly-btn bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg">
@@ -316,29 +338,30 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-white">
+        <section id="about" class="py-20 bg-gray-900 relative">
             <div class="section-overlay"></div>
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-12">About <span class="text-blue-500">Me</span></h2>
+                <h2 class="text-3xl font-bold text-center mb-12 text-white">About <span class="text-blue-500">Me</span>
+                </h2>
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/3 mb-8 md:mb-0">
                         <img src="./jpg/Gaurav2.jpg" alt="About Me"
-                            class="rounded-lg shadow-xl w-full max-w-md mx-auto">
+                            class="rounded-2xl shadow-2xl ring-4 ring-gray-800/50 w-full max-w-md mx-auto object-cover md:hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="md:w-2/3 md:pl-12">
-                        <h3 class="text-2xl font-semibold mb-4">Who am I?</h3>
-                        <p class="text-gray-700 mb-6">Hi, I'm a passionate Full-Stack Developer
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Who am I?</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">Hi, I'm a passionate Full-Stack Developer.
                             I craft responsive, user-friendly websites using HTML, CSS, JavaScript, and modern
                             frameworks like React. On the backend, I work with Node.js, Express, and Rust-based APIs,
-                            and handle databases using MongoDB and MySQL.</p>
+                            and handle databases using MongoDB and PostgreSQL.</p>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                             <div>
                                 <h4 class="font-semibold mb-2"><i class="fas fa-user-tie text-blue-500 mr-2"></i>Details
                                 </h4>
                                 <p><strong>Name:</strong> Gaurav Soni</p>
-                                <p><strong>Age:</strong> 19</p>
-                                <p><strong>Location:</strong> Gandhinagar, Gujrat, India</p>
+                                <p><strong>Experience:</strong> 2 Years</p>
+                                <p><strong>Location:</strong> Gandhinagar, Gujarat, India</p>
                             </div>
                             <div>
                                 <h4 class="font-semibold mb-2"><i class="fas fa-rocket text-blue-500 mr-2"></i>Interests
@@ -349,7 +372,8 @@
                             </div>
                         </div>
 
-                        <a target="_blank" href="" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition duration-300">
+                        <a target="_blank" href=""
+                            class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition duration-300">
                             <!-- ./pdf/Resume.pdf -->
                             <i class="fas fa-download mr-2"></i>Download Resume
                         </a>
@@ -359,14 +383,15 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-20 bg-gray-100 skills-section relative">
+        <section id="skills" class="py-20 bg-gray-800 skills-section relative">
             <div class="section-overlay"></div>
             <div class="container mx-auto px-4 relative z-10">
-                <h2 class="text-4xl font-bold text-center mb-16">My <span class="text-gradient">Skills</span></h2>
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">My <span
+                        class="text-blue-500 text-gradient">Skills</span></h2>
 
                 <!-- Technical Skills Section -->
-                <div class="skill-category mb-20">
-                    <h3 class="text-2xl font-semibold mb-8 text-gray-800 skill-header">
+                <div class="skill-category mb-20 text-center">
+                    <h3 class="text-2xl font-semibold mb-8 text-gray-200 skill-header">
                         <i class="fas fa-code mr-3 text-blue-500"></i>Technical Skills
                     </h3>
 
@@ -792,24 +817,96 @@
                         </div>
                     </div>
 
-                    <div class="text-center mt-16" data-aos="fade-up">
-                        <a href="#"
-                            class="view-all-btn inline-block bg-blue-500 hover:bg-white hover:text-blue-500 text-white px-8 py-3 rounded-full transition duration-300 border-2 border-blue-500 font-medium">
-                            View All Projects
-                        </a>
+                    <!-- Project 2 (Added Placeholder) -->
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="project-inner">
+                            <div class="project-image-container flex justify-center items-center bg-gray-800"
+                                style="height: 250px;">
+                                <i class="fas fa-shopping-cart text-6xl text-purple-500"></i>
+                            </div>
+                            <div class="project-content">
+                                <span class="project-badge bg-green-500 text-white px-2 py-1 rounded text-xs">Full
+                                    Stack</span>
+                                <h3 class="text-xl font-bold mb-3 mt-2">Next.js E-Commerce Platform</h3>
+                                <p class="text-gray-600 mb-4">A high-performance modern e-commerce platform with SSR,
+                                    complex state management, Stripe integration, and an admin dashboard.</p>
+
+                                <div class="mb-4 flex flex-wrap gap-2">
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">Next.js</span>
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">TypeScript</span>
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">Tailwind</span>
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">PostgreSQL</span>
+                                </div>
+
+                                <div class="project-links mt-auto">
+                                    <a target="_blank" href="#" class="project-link text-blue-500 hover:text-blue-700">
+                                        <i class="fab fa-github mr-1"></i> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Project 3 (Added Placeholder) -->
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="project-inner">
+                            <div class="project-image-container flex justify-center items-center bg-gray-800"
+                                style="height: 250px;">
+                                <i class="fas fa-server text-6xl text-blue-400"></i>
+                            </div>
+                            <div class="project-content">
+                                <span
+                                    class="project-badge bg-purple-500 text-white px-2 py-1 rounded text-xs">Backend/API</span>
+                                <h3 class="text-xl font-bold mb-3 mt-2">Rust Microservice API</h3>
+                                <p class="text-gray-600 mb-4">Developed a scalable Rust-based API microservice handling
+                                    10k+ concurrent connections with gRPC and Redis caching layer.</p>
+
+                                <div class="mb-4 flex flex-wrap gap-2">
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">Rust</span>
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">Tokio</span>
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">Redis</span>
+                                    <span
+                                        class="project-tech bg-gray-200 px-2 py-1 rounded text-sm text-gray-800">gRPC</span>
+                                </div>
+
+                                <div class="project-links mt-auto">
+                                    <a target="_blank" href="#" class="project-link text-blue-500 hover:text-blue-700">
+                                        <i class="fab fa-github mr-1"></i> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <div class="text-center mt-16" data-aos="fade-up">
+                    <a href="#"
+                        class="view-all-btn inline-block bg-blue-500 hover:bg-white hover:text-blue-500 text-white px-8 py-3 rounded-full transition duration-300 border-2 border-blue-500 font-medium">
+                        View All Projects
+                    </a>
+                </div>
+            </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-100">
+        <section id="contact" class="py-20 bg-gray-900">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="text-blue-500">Touch</span></h2>
+                <h2 class="text-3xl font-bold text-center mb-12 text-white">Get In <span
+                        class="text-blue-500">Touch</span></h2>
 
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/2">
-                        <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
-                        <p class="mb-6">Feel free to reach out to me for any questions or opportunities. I'll get back
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Contact Information</h3>
+                        <p class="mb-6 text-gray-300">Feel free to reach out to me for any questions or opportunities.
+                            I'll get back
                             to you as soon as possible!</p>
 
                         <div class="space-y-4">
@@ -824,14 +921,14 @@
                                 <i class="fas fa-phone-alt text-blue-500 text-xl mt-1 mr-4"></i>
                                 <div>
                                     <h4 class="font-semibold">Phone</h4>
-                                    <p></p>
+                                    <p>+91 98765 43210</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
                                 <i class="fas fa-map-marker-alt text-blue-500 text-xl mt-1 mr-4"></i>
                                 <div>
                                     <h4 class="font-semibold">Location</h4>
-                                    <p>Gandhinagar , Gujrat , India</p>
+                                    <p>Gandhinagar, Gujarat, India</p>
                                 </div>
                             </div>
                         </div>
@@ -854,29 +951,24 @@
                     </div>
 
                     <div class="md:w-1/2">
-                        <form class="bg-white p-6 rounded-lg shadow-lg">
+                        <form class="bg-gray-800/50 backdrop-blur-md border border-gray-700 p-8 rounded-xl shadow-2xl">
                             <div class="mb-4">
-                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <label for="name" class="block text-gray-300 mb-2">Your Name</label>
                                 <input type="text" id="name"
-                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
-                                <input type="text" id="name"
-                                    class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            <div class="mb-4">
-                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <label for="subject" class="block text-gray-300 mb-2">Subject</label>
                                 <input type="text" id="subject"
-                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
                             </div>
                             <div class="mb-4">
-                                <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                                <label for="message" class="block text-gray-300 mb-2">Your Message</label>
                                 <textarea id="message" rows="4"
-                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"></textarea>
                             </div>
                             <button type="submit"
-                                class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition duration-300">
+                                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/25 mt-2">
                                 Send Message
                             </button>
                         </form>
