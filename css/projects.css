@@ -210,6 +210,8 @@
 .project-image-container {
     position: relative;
     overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
 }
 
 .project-image-container::after {
@@ -282,6 +284,8 @@
     background: rgba(30, 41, 59, 0.85);
     backdrop-filter: blur(10px);
     transform: translateZ(20px);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
 /* Stellar Tech Badges */
