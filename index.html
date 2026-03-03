@@ -1070,6 +1070,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/skills.js"></script>
     <script src="./js/projects.js"></script>
@@ -1081,17 +1082,44 @@
             once: true
         });
 
-        // Add scroll animations natively
+        // Add an Epic Scroll Animation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 const targetElement = document.querySelector(targetId);
+
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+
+                    // The main content container we will animate
+                    const mainContent = document.querySelector('main');
+
+                    // Create an animated GSAP timeline
+                    const tl = gsap.timeline();
+
+                    // 1. Zoom out and blur the page slightly
+                    tl.to(mainContent, {
+                        duration: 0.4,
+                        scale: 0.95,
+                        opacity: 0.8,
+                        filter: 'blur(3px)',
+                        ease: "power2.inOut"
+                    })
+                        // 2. Quickly perform the Scroll
+                        .to(window, {
+                            duration: 0.8,
+                            scrollTo: { y: targetElement, offsetY: 64 }, // Offset 64px for the fixed header
+                            ease: "power3.inOut"
+                        }, "-=0.2")
+                        // 3. Zoom back in with a slight bounce
+                        .to(mainContent, {
+                            duration: 0.5,
+                            scale: 1,
+                            opacity: 1,
+                            filter: 'blur(0px)',
+                            ease: "back.out(1.5)"
+                        }, "-=0.1");
                 }
             });
         });
