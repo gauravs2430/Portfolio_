@@ -312,7 +312,7 @@
             <div class="section-overlay"></div>
             <div class="container mx-auto px-4 text-center relative z-10" data-parallax="0.3">
                 <div class="max-w-3xl mx-auto">
-                    <img src="./png/Gaurav.png" alt="Profile" class="rounded-full w-40 h-40 mx-auto mb-6 profile-img">
+                    <img src="./pfp.jpeg" alt="Profile" class="rounded-full w-40 h-40 mx-auto mb-6 profile-img">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4 animate__animated animate__fadeInDown">Hi, I'm <span
                             class="text-gradient">Gaurav Soni</span></h1>
                     <h2
@@ -320,8 +320,11 @@
                         <span class="typing-text"></span>
                     </h2>
                     <p class="text-lg mb-8 animate__animated animate__fadeIn animate__delay-1s text-gray-300">Full-stack
-                        developer focused on writing clean code, building reliable backends, and shipping real-world web
-                        apps.</p>
+                        developer focused on writing clean code, building reliable backends, and shipping real-world web apps.
+                        </p>
+                        <p style="margin-bottom: 12px; margin-top: -10px;" >
+                            I Believe that Services alone are not scalable but Software with services are ! 
+                        </p>
                     <div class="flex justify-center space-x-4 animate__animated animate__fadeInUp animate__delay-1s">
                         <a href="#projects"
                             class="heavenly-btn bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg">
@@ -833,27 +836,28 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <a href="./projects/spotify-clone/" class="project-card" data-aos="fade-up"
+                    <a href="./projects/ZomoReels/index.html" target="_blank" class="project-card" data-aos="fade-up"
                         style="text-decoration:none;display:block;cursor:pointer;">
                         <div class="project-inner">
                             <div class="project-image-container">
-                                <img src="./projects/spotify-clone/cover.png" alt="Audio Player Img"
-                                    class="project-image">
+                                <img src="./projects/ZomoReels/cover.png" alt="ZomoReels Project" class="project-image">
                             </div>
                             <div class="project-content">
                                 <span class="project-badge">Featured</span>
-                                <h3 class="text-xl font-bold mb-3">Spotify Like Audio Player</h3>
-                                <p class="text-gray-600 mb-4">A responsive Spotify clone with audio player, playlists,
-                                    and
-                                    seamless music playback.
-                                    Built for smooth navigation and real-time track control across all devices.</p>
+                                <h3 class="text-xl font-bold mb-3">ZomoReels</h3>
+                                <p class="text-gray-600 mb-4">
+                                    A full-stack reel-based food discovery platform where restaurants upload short-form
+                                    food videos and users browse a TikTok-style vertical feed with likes, saves, and
+                                    dual-role authentication via HttpOnly JWT cookies.
+                                </p>
 
                                 <div class="mb-4">
-                                    <span class="project-tech">HTML5</span>
-                                    <span class="project-tech">CSS</span>
-                                    <span class="project-tech">JavaScript</span>
+                                    <span class="project-tech">React</span>
                                     <span class="project-tech">Node.js</span>
                                     <span class="project-tech">Express.js</span>
+                                    <span class="project-tech">MongoDB</span>
+                                    <span class="project-tech">ImageKit</span>
+                                    <span class="project-tech">Zod</span>
                                 </div>
 
                                 <div class="project-links">
@@ -866,7 +870,7 @@
                     </a>
 
                     <!-- Project 2 -->
-                    <a href="./projects/ecommerce-platform/" class="project-card" data-aos="fade-up"
+                    <!-- <a href="./projects/ecommerce-platform/" class="project-card" data-aos="fade-up"
                         data-aos-delay="100" style="text-decoration:none;display:block;cursor:pointer;">
                         <div class="project-inner">
                             <div class="project-image-container">
@@ -893,10 +897,10 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </a> -->
 
                     <!-- Project 3 -->
-                    <a href="./projects/rust-microservice/" class="project-card" data-aos="fade-up" data-aos-delay="200"
+                    <!-- <a href="./projects/rust-microservice/" class="project-card" data-aos="fade-up" data-aos-delay="200"
                         style="text-decoration:none;display:block;cursor:pointer;">
                         <div class="project-inner">
                             <div class="project-image-container">
@@ -923,7 +927,7 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </a> -->
 
                 </div>
 
@@ -1153,14 +1157,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         // ─────────────────────────────────────────────────────────────
-        // EMAILJS SETUP — fill in your keys from https://emailjs.com
+        // EMAILJS SETUP
         // ─────────────────────────────────────────────────────────────
-        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';   // TODO: replace
-        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';   // TODO: replace
-        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // TODO: replace
+        const EMAILJS_PUBLIC_KEY = 'Fo7UFmgPR__fgj4pn';
+        const EMAILJS_SERVICE_ID = 'service_a3wkx91';
+        const EMAILJS_TEMPLATE_ID = 'template_mgrya8u';
         // ─────────────────────────────────────────────────────────────
 
-        emailjs.init({ publicKey: Fo7UFmgPR__fgj4pn });
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
         const contactForm = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
@@ -1201,7 +1205,7 @@
                 to_email: 'gauravsoni2430@gmail.com'
             };
 
-            emailjs.send(service_a3wkx91, template_mgrya8u, templateParams)
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
                 .then(function () {
                     showToast('success', 'Message sent! I\'ll get back to you soon.');
                     contactForm.reset();
