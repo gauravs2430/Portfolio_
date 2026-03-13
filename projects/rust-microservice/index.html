@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust Microservice API — Gaurav Soni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .back-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: #a855f7;
+        }
+
+        .back-bar-title {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .hero {
+            margin-top: 57px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-height: 560px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, #0f172a 0%, transparent 100%);
+        }
+
+        .content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            background: #a855f7;
+            color: #fff;
+        }
+
+        .project-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 28px 0;
+        }
+
+        .desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #94a3b8;
+            margin-bottom: 28px;
+        }
+
+        .features-title,
+        .tech-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 14px;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .feature-list li i {
+            color: #a855f7;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 36px;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            background: rgba(168, 85, 247, 0.08);
+            color: #d8b4fe;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .link-btn-primary {
+            background: #a855f7;
+            color: #fff;
+        }
+
+        .link-btn-primary:hover {
+            background: #9333ea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.35);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="back-bar">
+        <a href="../../index.html#projects" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+        <span class="back-bar-title">/ Projects / Rust Microservice API</span>
+    </div>
+
+    <div class="hero">
+        <img src="./cover.png" alt="Rust Microservice Dashboard Screenshot" class="hero-img">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="content">
+        <div class="fade-up">
+            <span class="badge">Backend / API</span>
+            <h1 class="project-title">Rust Microservice API</h1>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="desc fade-up delay-1">
+            A high-performance, scalable API microservice built with Rust and the Tokio async runtime.
+            Designed to handle 10,000+ concurrent connections with minimal latency, this service uses gRPC for
+            inter-service communication and a Redis caching layer to dramatically reduce database load.
+            Built with production reliability in mind — featuring structured logging, graceful shutdown, and health
+            checks.
+        </p>
+
+        <h3 class="features-title fade-up delay-1">Key Features</h3>
+        <ul class="feature-list fade-up delay-2">
+            <li><i class="fas fa-check-circle"></i> Handles 10k+ concurrent connections using Tokio's async runtime</li>
+            <li><i class="fas fa-check-circle"></i> gRPC endpoints for high-throughput inter-service communication</li>
+            <li><i class="fas fa-check-circle"></i> Redis caching layer reducing DB read load by ~80%</li>
+            <li><i class="fas fa-check-circle"></i> Structured JSON logging with tracing spans for observability</li>
+            <li><i class="fas fa-check-circle"></i> Graceful shutdown + health check endpoints for container
+                orchestration</li>
+            <li><i class="fas fa-check-circle"></i> Zero-cost abstractions — micro-second average response times</li>
+        </ul>
+
+        <h3 class="tech-title fade-up delay-3">Tech Stack</h3>
+        <div class="tech-pills fade-up delay-3">
+            <span class="pill">Rust</span>
+            <span class="pill">Tokio</span>
+            <span class="pill">gRPC / Tonic</span>
+            <span class="pill">Redis</span>
+            <span class="pill">Protobuf</span>
+        </div>
+
+        <div class="project-links fade-up delay-4">
+            <a href="#" target="_blank" class="link-btn link-btn-primary">
+                <i class="fab fa-github"></i> View Source Code
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
