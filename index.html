@@ -991,25 +991,49 @@
                     </div>
 
                     <div class="md:w-1/2">
-                        <form class="bg-gray-800/50 backdrop-blur-md border border-gray-700 p-8 rounded-xl shadow-2xl">
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-300 mb-2">Your Name</label>
-                                <input type="text" id="name"
-                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
+                        <form id="contact-form"
+                            class="bg-gray-800/50 backdrop-blur-md border border-gray-700 p-8 rounded-xl shadow-2xl">
+
+                            <!-- Toast Feedback -->
+                            <div id="form-toast"
+                                class="hidden mb-5 px-4 py-3 rounded-lg text-sm font-medium flex items-center gap-2">
                             </div>
+
                             <div class="mb-4">
-                                <label for="subject" class="block text-gray-300 mb-2">Subject</label>
-                                <input type="text" id="subject"
-                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
+                                <label for="from_name" class="block text-gray-300 mb-2">Your Name <span
+                                        class="text-red-400">*</span></label>
+                                <input type="text" id="from_name" name="from_name" required placeholder="John Doe"
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
                             </div>
+
                             <div class="mb-4">
-                                <label for="message" class="block text-gray-300 mb-2">Your Message</label>
-                                <textarea id="message" rows="4"
-                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"></textarea>
+                                <label for="reply_to" class="block text-gray-300 mb-2">Your Email <span
+                                        class="text-red-400">*</span></label>
+                                <input type="email" id="reply_to" name="reply_to" required
+                                    placeholder="john@example.com"
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
                             </div>
-                            <button type="submit"
-                                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/25 mt-2">
-                                Send Message
+
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-300 mb-2">Subject <span
+                                        class="text-red-400">*</span></label>
+                                <input type="text" id="subject" name="subject" required
+                                    placeholder="Regarding a project opportunity..."
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="message" class="block text-gray-300 mb-2">Your Message <span
+                                        class="text-red-400">*</span></label>
+                                <textarea id="message" name="message" rows="4" required
+                                    placeholder="Hi Gaurav, I'd love to connect about..."
+                                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"></textarea>
+                            </div>
+
+                            <button id="submit-btn" type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                <span id="btn-text">Send Message</span>
                             </button>
                         </form>
                     </div>
@@ -1122,6 +1146,76 @@
                         }, "-=0.1");
                 }
             });
+        });
+    </script>
+
+    <!-- ✉️ EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // ─────────────────────────────────────────────────────────────
+        // EMAILJS SETUP — fill in your keys from https://emailjs.com
+        // ─────────────────────────────────────────────────────────────
+        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';   // TODO: replace
+        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';   // TODO: replace
+        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // TODO: replace
+        // ─────────────────────────────────────────────────────────────
+
+        emailjs.init({ publicKey: Fo7UFmgPR__fgj4pn });
+
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const toast = document.getElementById('form-toast');
+
+        function showToast(type, msg) {
+            toast.className = 'mb-5 px-4 py-3 rounded-lg text-sm font-medium flex items-center gap-2';
+            if (type === 'success') {
+                toast.classList.add('bg-green-500/15', 'border', 'border-green-500/40', 'text-green-300');
+                toast.innerHTML = '<i class="fas fa-check-circle"></i> ' + msg;
+            } else {
+                toast.classList.add('bg-red-500/15', 'border', 'border-red-500/40', 'text-red-300');
+                toast.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + msg;
+            }
+            toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function hideToast() {
+            toast.className = 'hidden mb-5 px-4 py-3 rounded-lg text-sm font-medium flex items-center gap-2';
+        }
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            hideToast();
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.textContent = 'Sending...';
+            submitBtn.querySelector('i').className = 'fas fa-spinner fa-spin';
+
+            const templateParams = {
+                from_name: document.getElementById('from_name').value.trim(),
+                reply_to: document.getElementById('reply_to').value.trim(),
+                subject: document.getElementById('subject').value.trim(),
+                message: document.getElementById('message').value.trim(),
+                to_email: 'gauravsoni2430@gmail.com'
+            };
+
+            emailjs.send(service_a3wkx91, template_mgrya8u, templateParams)
+                .then(function () {
+                    showToast('success', 'Message sent! I\'ll get back to you soon.');
+                    contactForm.reset();
+                })
+                .catch(function (err) {
+                    console.error('EmailJS error:', err);
+                    showToast('error', 'Something went wrong. Please try again or email me directly.');
+                })
+                .finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                    btnText.textContent = 'Send Message';
+                    submitBtn.querySelector('i').className = 'fas fa-paper-plane';
+                });
         });
     </script>
 </body>
