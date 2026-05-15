@@ -74,7 +74,7 @@ Portfolio_/
 ├── json/                   # JSON data files (projects, etc.)
 ├── jpg/ & png/             # Image assets
 └── pdf/
-    └── Resume.pdf          # Downloadable resume
+    └── new_resume.pdf      # Downloadable resume
 ```
 
 ---
